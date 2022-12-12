@@ -7,3 +7,4 @@ After stumbling upon this [Youtube video](https://www.youtube.com/watch?v=sBJmRD
 - [ ] fix subtract operation bug
 - [ ] fix decimal point bug
 - [ ] refactor
+- [ ] deploy site

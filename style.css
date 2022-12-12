@@ -1,6 +1,5 @@
 :root {
   --dark: #505050;
-  /* --glass-bg: rgba(255, 255, 255, 0.3); */
   --glass-bg: #000;
 }
 
@@ -22,7 +21,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: var(--dark); */
   background-color: #d4d4d2;
   font-family: sans-serif;
 }

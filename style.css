@@ -1,5 +1,4 @@
 :root {
-  --dark: #505050;
   --glass-bg: #000;
 }
 
@@ -68,7 +67,6 @@ body {
   content: "+";
   display: inline-block;
   transform: translate(0, -5px) rotate(-10deg);
-  /* transform: rotate(-10deg); */
   font-size: 17px;
 }
 
@@ -76,7 +74,6 @@ body {
   content: "-";
   display: inline-block;
   transform: translate(0, 5px) rotate(-10deg);
-  /* transform: rotate(-10deg); */
 }
 
 .double {

@@ -53,13 +53,14 @@ function handleSymbol(symbol) {
       buffer = "0";
       runningTotal = 0;
       currentOperator = null;
-      // lastOperation.operator = null;
       renderScreen(buffer);
       break;
     case "/":
-      runningTotal = runningTotal * -1;
+      // runningTotal = runningTotal * -1;
       isNegative = !isNegative;
+      buffer = isNegative ? "-" + buffer : buffer;
       renderScreen(buffer);
+      // isNegative = false;
       break;
     case "%":
       const result = parseFloat(buffer) / 100;
@@ -106,7 +107,8 @@ function handleNumber(number) {
 
 function renderScreen(str) {
   const formattedStr = format(str, ",");
-  screen.textContent = `${isNegative ? "-" + formattedStr : formattedStr}`;
+  // screen.textContent = `${isNegative ? "-" + formattedStr : formattedStr}`;
+  screen.textContent = formattedStr;
 }
 
 function handleMath() {

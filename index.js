@@ -42,7 +42,7 @@ const handleNumber = (val) => {
 const handleSymbol = (val) => {
   switch (val) {
     case "C":
-      // only erase buffer content when Clear button is clicked
+      // only reset buffer content when Clear button is clicked
       clearBtn.textContent = "AC";
       calc.buffer = "0";
       break;

@@ -19,10 +19,10 @@ calcBtns.addEventListener("click", (e) => handleClick(e.target.textContent));
 
 // handle click events
 const handleClick = (val) => {
-  if (isNaN(val) && calc.buffer.length < 9) {
-    handleSymbol(val);
-  } else {
+  if ((!isNaN(val) || val === ".") && checkLength()) {
     handleNumber(val);
+  } else {
+    handleSymbol(val);
   }
   renderScreen();
 };
@@ -30,10 +30,12 @@ const handleClick = (val) => {
 // handle clicks on number buttons
 const handleNumber = (val) => {
   clearBtn.textContent = "C";
-  if (calc.buffer === "0") {
+  if (calc.buffer === "0" && val !== ".") {
     calc.buffer = val;
   } else {
-    calc.buffer += val;
+    if (!isNaN(val) || !calc.buffer.includes(".")) {
+      calc.buffer += val;
+    }
   }
   console.log(calc.buffer);
 };
@@ -54,6 +56,17 @@ const handleSymbol = (val) => {
       calc.runningTotal = 0;
       break;
   }
+};
+
+// function to check buffer length
+const checkLength = () => {
+  const filtered = calc.buffer
+    .split("")
+    .filter((char) => char !== "." && char !== "-" && char !== ",");
+  if (filtered.length < 9) {
+    return true;
+  }
+  return false;
 };
 
 // render number on calc-screen

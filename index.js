@@ -1,7 +1,7 @@
 // declare a calculation obj to hold useful values
 const calc = {
   buffer: "0",
-  runningTotal: 0,
+  runningTotal: null,
   currentOperator: null,
   lastOperation: {
     operant: null,
@@ -36,9 +36,8 @@ const handleNumber = (val) => {
     if (!isNaN(val) || !calc.buffer.includes(".")) {
       calc.buffer += val + "1";
       console.log(calc.buffer);
-      calc.buffer = parseFloat(calc.buffer)
-        .toString()
-        .slice(0, calc.buffer.length - 1);
+      calc.buffer = parseFloat(calc.buffer).toString();
+      calc.buffer = calc.buffer.slice(0, calc.buffer.length - 1);
     }
   }
   console.log(calc.buffer);
@@ -57,14 +56,34 @@ const handleSymbol = (val) => {
       calc.currentOperator = null;
       calc.lastOperation.operant = null;
       calc.lastOperation.operator = null;
-      calc.runningTotal = 0;
+      calc.runningTotal = null;
       break;
     case "/":
+      // make buffer value neg / pos
       if (calc.buffer[0] === "-") {
         calc.buffer = calc.buffer.slice(1);
       } else {
         calc.buffer = "-" + calc.buffer;
       }
+      break;
+    case "%":
+      // divide buffer by 100
+      calc.buffer = (
+        Math.round(
+          (parseFloat(calc.buffer) / 100 + Number.EPSILON) * 100000000
+        ) / 100000000
+      ).toString();
+    default:
+      handleMath(val);
+      break;
+  }
+};
+
+// function to handle math operations
+const handleMath = (val) => {
+  if (calc.runningTotal === null) {
+    calc.runningTotal = parseFloat(calc.buffer);
+    console.log(calc.runningTotal);
   }
 };
 
@@ -81,5 +100,9 @@ const checkLength = () => {
 
 // render number on calc-screen
 const renderScreen = () => {
-  screen.textContent = calc.buffer;
+  if (calc.buffer.includes("e")) {
+    screen.textContent = "Error";
+  } else {
+    screen.textContent = calc.buffer;
+  }
 };

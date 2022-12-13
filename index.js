@@ -34,7 +34,11 @@ const handleNumber = (val) => {
     calc.buffer = val;
   } else {
     if (!isNaN(val) || !calc.buffer.includes(".")) {
-      calc.buffer += val;
+      calc.buffer += val + "1";
+      console.log(calc.buffer);
+      calc.buffer = parseFloat(calc.buffer)
+        .toString()
+        .slice(0, calc.buffer.length - 1);
     }
   }
   console.log(calc.buffer);
@@ -55,6 +59,12 @@ const handleSymbol = (val) => {
       calc.lastOperation.operator = null;
       calc.runningTotal = 0;
       break;
+    case "/":
+      if (calc.buffer[0] === "-") {
+        calc.buffer = calc.buffer.slice(1);
+      } else {
+        calc.buffer = "-" + calc.buffer;
+      }
   }
 };
 

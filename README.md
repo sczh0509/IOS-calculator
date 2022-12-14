@@ -4,8 +4,7 @@ After stumbling upon this [Youtube video](https://www.youtube.com/watch?v=sBJmRD
 
 ### Pending Tasks
 
-- [ ] fix subtract operation bug
-- [ ] fix decimal point bug
-- [ ] implement AC button
+- [ ] create math handler
+- [ ] create formatter
 - [ ] refactor
 - [ ] deploy site
